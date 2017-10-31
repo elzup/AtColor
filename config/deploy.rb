@@ -9,7 +9,7 @@ set :ssh_options,     {
   forward_agent: true,
   user: fetch(:user),
 
-  keys: %w(~/.ssh/hiro_cps)
+  keys: %w(~/.ssh/elzup_mbp.pub)
 }
 set :puma_threads,    [4, 16]
 set :puma_workers,    0

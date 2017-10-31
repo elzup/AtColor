@@ -9,12 +9,16 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::RoutingError, with: :render_404
 
 
-  respond_to :json
+  respond_to :html, :json
 
   ##
   # User Authentication
   # Authenticates the user with OAuth2 Resource Owner Password Credentials
   def authenticate_user_from_token!
+    if params[:controller] =~ /admin/i
+      return
+    end
+
     auth_token = request.headers['Authorization']
 
     if auth_token
@@ -53,7 +57,7 @@ class ApplicationController < ActionController::Base
 
   protected
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :password, :password_confirmation) }
+    devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:username, :password, :password_confirmation)}
   end
 
   def render_400

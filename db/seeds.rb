@@ -4,4 +4,5 @@
   end
 end
 
-p "64x64 canvas initialized"AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+p "64x64 canvas initialized"
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

@@ -1,15 +1,16 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.10.0"
 
-server 'IPアドレス', port: 22, roles: [:app, :web, :db], primary: true
+server '133.20.55.178', port: 22, roles: [:app, :web, :db], primary: true
 set :repo_url,        'git@github.com:elzup/AtColor.git'
 set :application,     'AtCoder'
 set :user,            'deploy'
 set :ssh_options,     {
   forward_agent: true,
   user: fetch(:user),
+  auth_methods: %w(publickey),
 
-  keys: %w(~/.ssh/elzup_mbp.pub)
+  keys: %w(~/.ssh/elzup_mbp_deploy)
 }
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
@@ -27,7 +28,7 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 set :rbenv_type, :system
-set :rbenv_ruby, '2.3.0'
+set :rbenv_ruby, '2.4.0'
 set :linked_dirs, fetch(:linked_dirs, []).push(
   'log',
   'tmp/pids',

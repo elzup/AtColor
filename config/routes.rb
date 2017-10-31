@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :v1, defaults: { format: :json } do
     resources :login, only: [:create], controller: :sessions
     resources :users, only: [:index]
-    resources :pixels, only: [:index, :update]
+    resources :pixels, only: [:index]
+    put :pixels, to: 'pixels#update', as: :profile
   end
 end

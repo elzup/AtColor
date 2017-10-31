@@ -12,7 +12,7 @@ module V1
     # PUT
     # Create an user
     def update
-      @pixel = Pixel.where(x: pixel_params[:x], y: pixel_params[:y])
+      @pixel = Pixel.find_by(x: pixel_params[:x], y: pixel_params[:y])
       @pixel.update(color: pixel_params[:color])
 
       render json: @pixel, serializer: V1::PixelSerializer, root: nil

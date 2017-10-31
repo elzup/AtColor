@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171030192120) do
+ActiveRecord::Schema.define(version: 20171031020643) do
+
+  create_table "pixels", force: :cascade do |t|
+    t.integer "x"
+    t.integer "y"
+    t.string "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username", default: "", null: false

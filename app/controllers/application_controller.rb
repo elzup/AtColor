@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
   include AbstractController::Translation
 
-  before_action :authenticate_user_from_token!, :configure_permitted_parameters, if: :devise_controller?
+  before_action :authenticate_user_from_token!
 
   # 例外処理
   rescue_from ActiveRecord::RecordNotFound, with: :render_404

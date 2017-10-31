@@ -1,6 +1,5 @@
 module V1
   class PixelsController < ApplicationController
-    skip_before_action :authenticate_user_from_token!, only: [:create]
 
     # GET
     # Index users

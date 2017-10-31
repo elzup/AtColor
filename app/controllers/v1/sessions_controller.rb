@@ -7,7 +7,7 @@ module V1
       if User.exists?(username: user_params[:username])
         @user = User.find_for_database_authentication(username: params[:username])
         unless @user.valid_password?(params[:passwordj])
-          # error
+          return render json: {error: 'パスワードが一致しません。'}, status: :unprocessable_entity
         end
       else
         @user = User.new user_params

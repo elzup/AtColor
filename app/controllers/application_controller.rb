@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::Base
   include AbstractController::Translation
 
   before_action :authenticate_user_from_token!

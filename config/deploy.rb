@@ -3,7 +3,7 @@ lock "~> 3.10.0"
 
 server '133.20.55.178', port: 22, roles: [:app, :web, :db], primary: true
 set :repo_url,        'https://github.com/elzup/AtColor.git'
-set :application,     'AtColor'
+set :application,     'atcolor'
 set :user,            'deploy'
 set :ssh_options,     {
   forward_agent: true,
@@ -38,6 +38,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
   'public/system',
   'public/uploads'
 )
+
 set :linked_files, fetch(:linked_files, []).push(
   'config/database.yml',
   'config/secrets.yml'

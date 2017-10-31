@@ -40,8 +40,6 @@ class ApplicationController < ActionController::Base
     user = User.where(id: user_id).first
 
     if user && Devise.secure_compare(user.access_token, auth_token)
-      # User can access
-      sign_in user, store: false
     else
       authenticate_error
     end

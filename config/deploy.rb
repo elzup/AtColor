@@ -39,7 +39,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
   'public/uploads'
 )
 
-set :console_user, :user
+set :console_user, fetch(:app)
 
 set :linked_files, fetch(:linked_files, []).push(
   'config/database.yml',

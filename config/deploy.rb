@@ -2,8 +2,8 @@
 lock "~> 3.10.0"
 
 server '133.20.55.178', port: 22, roles: [:app, :web, :db], primary: true
-set :repo_url,        'git@github.com:elzup/AtColor.git'
-set :application,     'AtCoder'
+set :repo_url,        'https://github.com/elzup/AtColor.git'
+set :application,     'AtColor'
 set :user,            'deploy'
 set :ssh_options,     {
   forward_agent: true,

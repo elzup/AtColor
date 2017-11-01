@@ -40,6 +40,7 @@ gem 'devise'
 gem 'active_model_serializers'
 
 gem 'coveralls', require: false
+gem 'activeadmin', github: 'activeadmin'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -67,6 +68,5 @@ group :development do
   gem 'capistrano3-puma',   require: false
   gem 'capistrano-rbenv',   require: false
   gem 'capistrano-rails-console'
-  gem 'activeadmin', github: 'activeadmin'
 end
 

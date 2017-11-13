@@ -16,7 +16,7 @@ module V1
       if params[:id] == '5'
         if request.headers['X-FUTABA'] == 'ANZU'
           solved = @current_user.solved(5)
-          message = solved.new_record? ? 'Congratuation! Q5 solved.' : 'OK already solved.'
+          message = solved ? 'Congratuation! Q5 solved.' : 'OK already solved.'
           render json: {message: message}
         else
           render json: {message: 'Please "GET" me with header. (X-FUTABA: ANZU)'}
@@ -25,7 +25,7 @@ module V1
       elsif params[:id] == '6'
         if request.headers['X-RIDER'] == 'ISKANDAR'
           solved = @current_user.solved(6)
-          message = solved.new_record? ? 'Congratuation! Q6 solved.' : 'OK already solved.'
+          message = solved ? 'Congratuation! Q6 solved.' : 'OK already solved.'
           render json: {message: message}
         else
           # TODO
@@ -38,8 +38,8 @@ module V1
           response.headers['X-CASTER'] = 'GILLES'
           render json: {message: 'Please "GET" me with sending back same header. (X-RIDER: ???). look at my header.'}
         end
+        end
       end
-    end
 
     def destroy
       if params[:id] == '4'

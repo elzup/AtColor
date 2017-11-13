@@ -41,6 +41,11 @@ class User < ApplicationRecord
   end
 
   def solved(qid)
-    solvings.find_or_create_by(question_id: Question.find_by_qid(qid).id)
+    solve = solvings.find_or_initialize_by(question_id: Question.find_by_qid(qid).id)
+    if solve.new_record?
+      solve.save
+      return true
+    end
+    false
   end
 end

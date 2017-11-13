@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe "Users", type: :request do
   describe "GET /users" do
     before do
+
+      Question.setup
       10.times {|i| User.create(username: "hoge#{i}", password: "hoge1234")}
       get v1_users_path
       @data = JSON.parse(response.body, {:symbolize_names => true})
@@ -62,6 +64,7 @@ RSpec.describe "Users", type: :request do
       @user2 = User.create(username: "yui", password: "hoge1234")
 
       @headers = {Authentication: @user.access_token}
+      @headers2 = {Authentication: @user2.access_token}
       get v1_user_path(@user.id), headers: @headers
       @data = JSON.parse(response.body, {:symbolize_names => true})
     end
@@ -82,6 +85,11 @@ RSpec.describe "Users", type: :request do
     it "Q1 solved" do
       expect(@user.solvings.length).to be(1)
       expect(@user.solved_questions[0].qid).to be(1)
+    end
+
+    it "Q1 not solved" do
+      get v1_user_path(@user.id), headers: @headers2
+      expect(@user2.solvings.length).to be(0)
     end
   end
 end

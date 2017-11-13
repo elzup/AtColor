@@ -12,16 +12,20 @@ module V1
     def show
       @user = User.find(params[:id])
       if @current_user.id == @user.id
-        @current_user.solvings.find_or_create_by(question_id: Question.find_by_qid(1).id)
+        @current_user.solved(1)
       end
       render json: @user, serializer: V1::UserSerializer
     end
 
     def update
-      unless @current_user.update(user_update_params)
-        return render json: {error: @current_user.errors}, status: :unprocessable_entity
+      if @current_user.update(user_update_params)
+        if !user_update_params[:twitter].nil? || !user_update_params[:language].nil?
+          @current_user.solved(3)
+        end
+        render json: @current_user, serializer: V1::UserSerializer, root: nil
+      else
+        render json: {error: @current_user.errors}, status: :unprocessable_entity
       end
-      render json: @current_user, serializer: V1::UserSerializer, root: nil
     end
 
     private

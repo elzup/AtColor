@@ -17,17 +17,28 @@ RSpec.describe "Sessions", type: :request do
     it "register no password" do
       post v1_register_index_path, params: {username: 'hoge'}
       expect(response).to have_http_status(422)
+      result = JSON.parse(response.body)
+      expect(result["error"]["password"][0]).to include("blank")
     end
 
     it "register no username" do
       post v1_register_index_path, params: {passwrod: 'password'}
       expect(response).to have_http_status(422)
+      result = JSON.parse(response.body)
+      expect(result["error"]["username"][0]).to include("blank")
+    end
+
+    it "short password" do
+      post v1_register_index_path, params: {username: 'hoge', password: 'pass'}
+      expect(response).to have_http_status(422)
+      result = JSON.parse(response.body)
+      expect(result["error"]["password"][0]).to include("short")
     end
 
     it "exists user" do
       post v1_register_index_path, params: {username: 'start', password: 'password'}
       result = JSON.parse(response.body)
-      expect(result["error"]).to include("既に")
+      expect(result["error"]["username"][0]).to include("already")
     end
   end
 

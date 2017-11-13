@@ -4,13 +4,9 @@ module V1
 
     # POST /v1/register
     def create
-      if User.exists?(username: user_params[:username])
-        return render json: {error: 'ユーザ名は既に登録されています。'}, status: :unprocessable_entity
-      end
-
       @user = User.new user_params
       unless @user.save
-        return render json: {error: 'ユーザを作成することが出来ませんでした。'}, status: :unprocessable_entity
+        return render json: {error: @user.errors}, status: :unprocessable_entity
       end
       sign_in :user, @user
       render json: @user, serializer: SessionSerializer, root: nil
@@ -20,7 +16,7 @@ module V1
     def login
       @user = User.find_for_database_authentication(username: user_params[:username])
       unless @user.valid_password?(user_params[:password])
-        return render json: {error: 'ユーザ名かパスワードが間違っています。'}, status: :unprocessable_entity
+        return render json: @user, status: :unprocessable_entity
       end
 
       sign_in :user, @user

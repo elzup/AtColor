@@ -67,13 +67,13 @@ ActiveRecord::Schema.define(version: 20171113081540) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "solves", force: :cascade do |t|
+  create_table "solvings", force: :cascade do |t|
     t.integer "user_id"
     t.integer "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["question_id"], name: "index_solves_on_question_id"
-    t.index ["user_id"], name: "index_solves_on_user_id"
+    t.index ["question_id"], name: "index_solvings_on_question_id"
+    t.index ["user_id"], name: "index_solvings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

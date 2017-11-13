@@ -14,8 +14,8 @@ class User < ApplicationRecord
   validates_length_of :twitter, :minimum => 1, :maximum => 20, :allow_blank => true
   validates_length_of :language, :minimum => 1, :maximum => 20, :allow_blank => true
 
-  has_many :solves
-  has_many :questions, :through => :solves
+  has_many :solvings
+  has_many :questions, :through => :solvings
   alias solved_questions questions
 
   def update_access_token!

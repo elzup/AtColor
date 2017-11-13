@@ -1,5 +1,5 @@
 module V1
-  class SolveSerializer < ActiveModel::Serializer
+  class SolvingSerializer < ActiveModel::Serializer
     attributes created_at
     has_one :question
     has_one :user

@@ -1,5 +1,5 @@
 class Question < ApplicationRecord
-  has_many :solves
-  has_many :users, :through => :solves
+  has_many :solvings
+  has_many :users, :through => :solvings
   alias solvers users
 end

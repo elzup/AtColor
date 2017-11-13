@@ -7,6 +7,10 @@ class User < ApplicationRecord
   validates_uniqueness_of :username
   validates_presence_of :username
 
+  validates :username, presence: true
+  validates :password, presence: true
+
+
   alias_attribute :created_missions, :missions
 
   def update_access_token!

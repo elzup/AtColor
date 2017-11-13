@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   # devise_for :users
   namespace :v1, defaults: { format: :json } do
+    resources :register, only: [:create], controller: :sessions, as: :register
     resources :login, only: [:create], controller: :sessions, as: :login
     resources :users, only: [:index]
     resources :pixels, only: [:index]

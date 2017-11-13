@@ -57,7 +57,7 @@ RSpec.describe "Users", type: :request do
       @user = User.create(username: "kyoko", password: "hoge1234")
       user2 = User.create(username: "yui", password: "hoge1234")
 
-      get v1_user_path(@user.id), params: { twitter: 'hoge'}, headers: @headers
+      get v1_user_path(@user.id), headers: @headers
       @data = JSON.parse(response.body, {:symbolize_names => true})
     end
 
@@ -67,6 +67,11 @@ RSpec.describe "Users", type: :request do
 
     it "got user" do
       expect(@data[:username]).to eql('kyoko')
+    end
+
+    it "user not found" do
+      get v1_user_path(99), headers: @headers
+      expect(response).to have_http_status(404)
     end
   end
 end

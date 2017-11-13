@@ -39,4 +39,8 @@ class User < ApplicationRecord
   def will_save_change_to_email?
     false
   end
+
+  def solved(qid)
+    solvings.find_or_create_by(question_id: Question.find_by_qid(qid).id)
+  end
 end

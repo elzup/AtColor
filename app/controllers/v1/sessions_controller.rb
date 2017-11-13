@@ -9,6 +9,7 @@ module V1
         return render json: {error: @user.errors}, status: :unprocessable_entity
       end
       sign_in :user, @user
+      @user.solved(2)
       render json: @user, serializer: SessionSerializer, root: nil
     end
 

@@ -33,22 +33,22 @@ RSpec.describe "Sessions", type: :request do
 
   describe "GET /sessions" do
 
-    before do
+    before :all do
       User.create(username: 'start', password: 'password')
     end
 
     it "works!" do
-      post v1_login_index_path, params: {username: 'start', password: 'password'}
+      post v1_login_path, params: {username: 'start', password: 'password'}
       expect(response).to have_http_status(200)
     end
 
     it "no password" do
-      post v1_login_index_path, params: {username: 'start'}
+      post v1_login_path, params: {username: 'start'}
       expect(response).to have_http_status(422)
     end
 
     it "invalid password" do
-      post v1_login_index_path, params: {username: 'start', password: 'a'}
+      post v1_login_path, params: {username: 'start', password: 'a'}
       expect(response).to have_http_status(422)
     end
   end

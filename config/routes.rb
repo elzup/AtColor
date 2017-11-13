@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # devise_for :users
   namespace :v1, defaults: { format: :json } do
     resources :register, only: [:create], controller: :sessions, as: :register
-    resources :login, only: [:login], controller: :sessions, as: :login
+    post :login, to: 'sessions#login'
     resources :users, only: [:index]
     resources :pixels, only: [:index]
     put :pixels, to: 'pixels#update'

@@ -5,12 +5,15 @@ module V1
     # GET
     # Index users
     def index
+      p @current_user
       @users = User.all
       render json: @users, each_serializer: V1::UserSerializer
     end
 
     def show
       @user = User.find(params[:id])
+      p @current_user
+      p @user.id
       if @current_user.id == @user.id
         @current_user.solved(1)
       end

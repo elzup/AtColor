@@ -53,6 +53,31 @@ RSpec.describe "Sessions", type: :request do
     end
   end
 
+  describe "GET /is_auth" do
+
+    before do
+      @user = User.create(username: 'start', password: 'password')
+      @headers = {Authentication: @user.access_token}
+    end
+
+    it "works!" do
+      get v1_is_auth_path, headers: @headers
+      data = JSON.parse(response.body, {:symbolize_names => true})
+      expect(response).to have_http_status(200)
+      expect(data[:message]).to include("OK")
+    end
+
+    it "no loging" do
+      get v1_is_auth_path, headers: {Authentication: "hoge"}
+      expect(response).to have_http_status(401)
+    end
+
+    it "Q1 solved" do
+      expect(@user.solvings.length).to be(1)
+      expect(@user.solved_questions[0].qid).to be(1)
+    end
+  end
+
   describe "GET /sessions" do
 
     before do

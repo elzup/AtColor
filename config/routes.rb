@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   namespace :v1, defaults: { format: :json } do
     resources :register, only: [:create], controller: :sessions, as: :register
     post :login, to: 'sessions#login'
+    get :is_auth, to: 'sessions#is_auth'
 
     resources :users, only: [:index, :show]
     put :users, to: 'users#update'

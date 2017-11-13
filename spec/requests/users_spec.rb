@@ -76,9 +76,7 @@ RSpec.describe "Users", type: :request do
       @user = User.create(username: "kyoko", password: "hoge1234")
       @user2 = User.create(username: "yui", password: "hoge1234")
 
-      @headers = {Authentication: @user.access_token}
-      @headers2 = {Authentication: @user2.access_token}
-      get v1_user_path(@user.id), headers: @headers
+      get v1_user_path(@user.id)
       @data = JSON.parse(response.body, {:symbolize_names => true})
     end
 
@@ -91,18 +89,8 @@ RSpec.describe "Users", type: :request do
     end
 
     it "user not found" do
-      get v1_user_path(99), headers: @headers
+      get v1_user_path(99)
       expect(response).to have_http_status(404)
-    end
-
-    it "Q1 solved" do
-      expect(@user.solvings.length).to be(1)
-      expect(@user.solved_questions[0].qid).to be(1)
-    end
-
-    it "Q1 not solved" do
-      get v1_user_path(@user.id), headers: @headers2
-      expect(@user2.solvings.length).to be(0)
     end
   end
 end

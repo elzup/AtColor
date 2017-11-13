@@ -1,6 +1,7 @@
 module V1
   class SessionsController < ApplicationController
     skip_before_action :authenticate_user_from_token!
+    before_action :authenticate_user_from_token!, only: [:is_auth]
 
     # POST /v1/register
     def create
@@ -22,6 +23,11 @@ module V1
 
       sign_in :user, @user
       render json: @user, serializer: SessionSerializer, root: nil
+    end
+
+    # GET /v1/login
+    def is_auth
+      render json: { message: "Your Authentication OK! \"#{@current_user.username}\"" }
     end
 
     private

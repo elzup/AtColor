@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :pixels, only: [:index]
     put :pixels, to: 'pixels#update'
 
-    get :q, to: 'questions#index', only: [:index]
+    resources :q, controller: :questions, as: :q
 
     resources :debugs
   end

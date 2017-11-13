@@ -8,7 +8,7 @@ RSpec.describe "Questions", type: :request do
         q = Question.create(title: "hoge#{i}", description: "dddddd dddddd dddd #{i}")
         q.solvings.create(user: u)
       end
-      get v1_q_path
+      get v1_q_index_path
       @data = JSON.parse(response.body, {:symbolize_names => true})
     end
 

@@ -14,11 +14,17 @@ module V1
         diff = params[:time].to_i - Time.now.to_i
         if diff == 0
           solved = @current_user.solved(8)
-          message = solved ? 'Congratuation! Q6 solved.' : 'OK already solved.'
+          message = solved ? 'Congratuation! Q8 solved.' : 'OK already solved.'
         else
           message = "Failed. diff: #{diff}"
         end
         render json: {message: message}
+      elsif params[:id] == '101'
+        render json: {message: ''}
+      elsif params[:id] == '102'
+      elsif params[:id] == '103'
+      elsif params[:id] == '104'
+
       end
     end
 

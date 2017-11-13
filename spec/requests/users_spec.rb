@@ -26,6 +26,12 @@ RSpec.describe "Users", type: :request do
       expect(user).not_to have_key(:password)
       expect(user).not_to have_key(:access_token)
     end
+
+    it "Q2 solved" do
+      user = User.last
+      expect(user.solvings.length).to be(1)
+      expect(user.solved_questions[0].qid).to be(2)
+    end
   end
 
   describe "PUT /users" do

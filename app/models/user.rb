@@ -10,6 +10,8 @@ class User < ApplicationRecord
   validates :username, presence: true
   validates :password, presence: true
 
+  validates_length_of :twitter, :minimum => 1, :maximum => 20, :allow_blank => true
+  validates_length_of :language, :minimum => 1, :maximum => 20, :allow_blank => true
 
   alias_attribute :created_missions, :missions
 

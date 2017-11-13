@@ -20,6 +20,7 @@ RSpec.describe "Users", type: :request do
       user = @data[0]
       expect(user[:username]).to eq('hoge0')
       expect(user).to have_key(:solved_questions)
+      expect(user).to have_key(:total_point)
       expect(user).not_to have_key(:password)
       expect(user).not_to have_key(:access_token)
     end
@@ -54,9 +55,13 @@ RSpec.describe "Users", type: :request do
 
   describe "GET /users/:id" do
     before do
-      @user = User.create(username: "kyoko", password: "hoge1234")
-      user2 = User.create(username: "yui", password: "hoge1234")
 
+      Question.setup
+
+      @user = User.create(username: "kyoko", password: "hoge1234")
+      @user2 = User.create(username: "yui", password: "hoge1234")
+
+      @headers = {Authentication: @user.access_token}
       get v1_user_path(@user.id), headers: @headers
       @data = JSON.parse(response.body, {:symbolize_names => true})
     end
@@ -72,6 +77,11 @@ RSpec.describe "Users", type: :request do
     it "user not found" do
       get v1_user_path(99), headers: @headers
       expect(response).to have_http_status(404)
+    end
+
+    it "Q1 solved" do
+      expect(@user.solvings.length).to be(1)
+      expect(@user.solved_questions[0].qid).to be(1)
     end
   end
 end

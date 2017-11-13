@@ -1,7 +1,7 @@
 module V1
   class UserSerializer < ActiveModel::Serializer
 
-    attributes :id, :username, :twitter, :language
+    attributes :id, :username, :twitter, :language, :total_point
     # has_many :questions
     has_many :solved_questions
   end

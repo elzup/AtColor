@@ -18,6 +18,10 @@ class User < ApplicationRecord
   has_many :questions, :through => :solvings
   alias solved_questions questions
 
+  def total_point
+    solved_questions.sum(:point)
+  end
+
   def update_access_token!
     self.access_token = "#{self.id}:#{Devise.friendly_token}"
     save

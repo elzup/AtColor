@@ -97,4 +97,23 @@ RSpec.describe "Questions", type: :request do
       expect(response.headers['X-Prev-Page']).to eql("2")
     end
   end
+
+  describe "GET /q/8" do
+    it "Q8 question" do
+      get v1_q_path(8), {headers: @headers}
+      @data = JSON.parse(response.body, {:symbolize_names => true})
+      expect(@data[:message]).to include('current unix timestamp')
+    end
+
+    it "Q8 solve" do
+      put v1_q_path(8), { params: { time: Time.now.to_i }, headers: @headers }
+      expect(@user.solvings.length).to be(1)
+      expect(@user.solved_questions[0].qid).to be(8)
+    end
+
+    it "Q8 failed" do
+      put v1_q_path(9), { params: { time: Time.now.to_i + 10 }, headers: @headers }
+      expect(@user.solvings.length).to be(0)
+    end
+  end
 end

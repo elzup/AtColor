@@ -9,7 +9,17 @@ module V1
       render json: @qs, each_serializer: V1::QuestionSerializer
     end
 
-    def create
+    def update
+      if params[:id] == '8'
+        diff = params[:time].to_i - Time.now.to_i
+        if diff == 0
+          solved = @current_user.solved(8)
+          message = solved ? 'Congratuation! Q6 solved.' : 'OK already solved.'
+        else
+          message = "Failed. diff: #{diff}"
+        end
+        render json: {message: message}
+      end
     end
 
     def show
@@ -55,6 +65,12 @@ module V1
               message: 'Please Find name of Idol where id = 11. and "GET" me with parameter "name". You can use parameters ["name", "page"]. look at my header.'
           }
         end
+
+      elsif params[:id] == '8'
+        render json: {
+            idols: @res,
+            message: 'Please "POST" me with current unix timestamp. You can use field ["time"]. not "GET" use "POST"'
+        }
       end
     end
 

@@ -16,5 +16,7 @@ Rails.application.routes.draw do
     put :pixels, to: 'pixels#update'
 
     get :q, to: 'questions#index', only: [:index]
+
+    resources :debugs
   end
 end

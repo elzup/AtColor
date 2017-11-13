@@ -11,9 +11,6 @@ module V1
 
     def show
       @user = User.find(params[:id])
-      if @current_user.id == @user.id
-        @current_user.solved(1)
-      end
       render json: @user, serializer: V1::UserSerializer
     end
 

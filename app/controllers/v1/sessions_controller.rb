@@ -27,6 +27,7 @@ module V1
 
     # GET /v1/login
     def is_auth
+      @current_user.solved(1)
       render json: { message: "Your Authentication OK! \"#{@current_user.username}\"" }
     end
 

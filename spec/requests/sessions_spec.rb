@@ -56,6 +56,7 @@ RSpec.describe "Sessions", type: :request do
   describe "GET /is_auth" do
 
     before do
+      Question.setup
       @user = User.create(username: 'start', password: 'password')
       @headers = {Authentication: @user.access_token}
     end
@@ -73,6 +74,7 @@ RSpec.describe "Sessions", type: :request do
     end
 
     it "Q1 solved" do
+      get v1_is_auth_path, headers: @headers
       expect(@user.solvings.length).to be(1)
       expect(@user.solved_questions[0].qid).to be(1)
     end

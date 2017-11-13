@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20171113081540) do
   end
 
   create_table "questions", force: :cascade do |t|
+    t.integer "qid"
     t.string "name"
     t.integer "point"
     t.string "title"

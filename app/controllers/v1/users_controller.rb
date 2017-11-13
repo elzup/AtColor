@@ -1,6 +1,6 @@
 module V1
   class UsersController < ApplicationController
-    skip_before_action :authenticate_user_from_token!, only: [:index, :show]
+    skip_before_action :authenticate_user_from_token!, only: [:index]
 
     # GET
     # Index users
@@ -11,6 +11,9 @@ module V1
 
     def show
       @user = User.find(params[:id])
+      if @current_user.id == @user.id
+        @current_user.solvings.find_or_create_by(question_id: Question.find_by_qid(1).id)
+      end
       render json: @user, serializer: V1::UserSerializer
     end
 

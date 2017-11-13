@@ -3,6 +3,6 @@ module V1
 
     attributes :id, :username, :twitter, :language
     # has_many :questions
-    has_many :solvings
+    has_many :solved_questions
   end
 end

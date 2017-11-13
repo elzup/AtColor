@@ -19,6 +19,7 @@ RSpec.describe "Users", type: :request do
     it "params" do
       user = @data[0]
       expect(user[:username]).to eq('hoge0')
+      expect(user).to have_key(:solved_questions)
       expect(user).not_to have_key(:password)
       expect(user).not_to have_key(:access_token)
     end

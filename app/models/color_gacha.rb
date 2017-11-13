@@ -1,0 +1,2 @@
+class ColorGacha < ApplicationRecord
+end

@@ -15,7 +15,7 @@ module V1
     # POST /v1/login
     def login
       @user = User.find_for_database_authentication(username: user_params[:username])
-      unless @user.valid_password?(user_params[:password])
+      unless @user && @user.valid_password?(user_params[:password])
         return render json: @user, status: :unprocessable_entity
       end
 

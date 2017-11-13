@@ -58,6 +58,11 @@ RSpec.describe "Sessions", type: :request do
       expect(response).to have_http_status(422)
     end
 
+    it "no exists user" do
+      post v1_login_path, params: {username: 'new', password: 'password'}
+      expect(response).to have_http_status(422)
+    end
+
     it "invalid password" do
       post v1_login_path, params: {username: 'start', password: 'a'}
       expect(response).to have_http_status(422)

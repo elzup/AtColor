@@ -116,4 +116,12 @@ RSpec.describe "Questions", type: :request do
       expect(@user.solvings.length).to be(0)
     end
   end
+
+  describe "GET /q/104" do
+    it "all OK" do
+      put v1_q_path(104), { params: { flag: 'FLAG_A_TC_OLO_R' }, headers: @headers }
+      expect(@user.solvings.length).to be(1)
+      expect(@user.solved_questions[0].qid).to be(104)
+    end
+  end
 end

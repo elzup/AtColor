@@ -28,7 +28,6 @@ module V1
           message = solved ? 'Congratuation! Q6 solved.' : 'OK already solved.'
           render json: {message: message}
         else
-          # TODO
           response.headers['X-SABER'] = 'ARTHUR'
           response.headers['X-RIDER'] = 'ISKANDAR'
           response.headers['X-ASSASSIN'] = 'HASSAN'
@@ -38,13 +37,31 @@ module V1
           response.headers['X-CASTER'] = 'GILLES'
           render json: {message: 'Please "GET" me with sending back same header. (X-RIDER: ???). look at my header.'}
         end
+      elsif params[:id] == '7'
+        if params[:name] == '安部菜々'
+          solved = @current_user.solved(7)
+          message = solved ? 'Congratuation! Q7 solved.' : 'OK already solved.'
+          render json: {message: message}
+        else
+          page = params[:page] || 1
+          @res = Idol.page(page)
+          response.header["X-Total"] = @res.total_count.to_s
+          response.header["X-Total-Pages"] = @res.total_pages.to_s
+          response.header["X-Page"] = @res.current_page.to_s
+          response.header["X-Next-Page"] = @res.next_page.to_s
+          response.header["X-Prev-Page"] = @res.prev_page.to_s
+          render json: {
+              idols: @res,
+              message: 'Please Find name of Idol where id = 11. and "GET" me with parameter "name". You can use parameters ["name", "page"]. look at my header.'
+          }
         end
       end
+    end
 
     def destroy
       if params[:id] == '4'
         solved = @current_user.solved(4)
-        message = solved.new_record? ? 'Congratuation! Q4 solved.' : 'OK already solved.'
+        message = solved ? 'Congratuation! Q4 solved.' : 'OK already solved.'
         render json: {message: message}
       end
     end

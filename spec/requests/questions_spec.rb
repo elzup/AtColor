@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "Questions", type: :request do
   before :each do
     Question.setup
+    Idol.setup
     @user = User.create(username: 'start', password: 'hogefuga')
     @headers = {Authentication: @user.access_token}
   end
@@ -70,6 +71,30 @@ RSpec.describe "Questions", type: :request do
       get v1_q_path(6), {headers: {Authentication: @user.access_token, 'X-RIDER': 'GUNSO'}}
       get v1_q_path(6), {headers: {Authentication: @user.access_token, 'X-ARCHER': 'ISKANDAR'}}
       expect(@user.solvings.length).to be(0)
+    end
+  end
+
+  describe "GET /q/7" do
+    it "Q7 question" do
+      get v1_q_path(7), {headers: @headers}
+      @data = JSON.parse(response.body, {:symbolize_names => true})
+      expect(response.headers).to have_key('X-Total-Pages')
+      expect(response.headers).to have_key('X-Page')
+    end
+
+    it "Q7 paging" do
+      get v1_q_path(7), {params: { name: '安部菜々' }, headers: @headers}
+      expect(@user.solvings.length).to be(1)
+      expect(@user.solved_questions[0].qid).to be(7)
+    end
+
+    it "Q7 paging" do
+      get v1_q_path(7), {params: { page: 3 }, headers: @headers}
+      @data = JSON.parse(response.body, {:symbolize_names => true})
+      expect(@data).to have_key(:idols)
+      expect(@data[:idols].length).to eql(10)
+      expect(response.headers['X-Next-Page']).to eql("4")
+      expect(response.headers['X-Prev-Page']).to eql("2")
     end
   end
 end

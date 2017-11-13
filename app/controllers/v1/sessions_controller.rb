@@ -18,12 +18,9 @@ module V1
 
     # POST /v1/login
     def login
-      unless User.exists?(username: user_params[:username])
-        return render json: {error: 'ユーザが存在しません。'}, status: :unprocessable_entity
-      end
-      @user = User.find_for_database_authentication(username: params[:username])
-      unless @user.valid_password?(params[:password])
-        return render json: {error: 'パスワードが一致しません。'}, status: :unprocessable_entity
+      @user = User.find_for_database_authentication(username: user_params[:username])
+      unless @user.valid_password?(user_params[:password])
+        return render json: {error: 'ユーザ名かパスワードが間違っています。'}, status: :unprocessable_entity
       end
 
       sign_in :user, @user

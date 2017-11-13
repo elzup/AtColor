@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Sessions", type: :request do
   describe "GET /register" do
-    before :all do
+    before do
       User.create(username: 'start', password: 'hogefuga')
     end
 
@@ -33,7 +33,7 @@ RSpec.describe "Sessions", type: :request do
 
   describe "GET /sessions" do
 
-    before :all do
+    before do
       User.create(username: 'start', password: 'password')
     end
 

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   namespace :v1, defaults: { format: :json } do
     resources :register, only: [:create], controller: :sessions, as: :register
     post :login, to: 'sessions#login'
-    resources :users, only: [:index]
+    resources :users, only: [:index, :update]
     resources :pixels, only: [:index]
     put :pixels, to: 'pixels#update'
   end

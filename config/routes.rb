@@ -9,8 +9,7 @@ Rails.application.routes.draw do
     resources :register, only: [:create], controller: :sessions, as: :register
     post :login, to: 'sessions#login'
 
-    resources :users, only: [:index]
-    get :users, to: 'users#show'
+    resources :users, only: [:index, :show]
     put :users, to: 'users#update'
 
     resources :pixels, only: [:index]

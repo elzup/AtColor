@@ -52,7 +52,7 @@ group :development, :test do
   gem 'database_cleaner'
 
   gem 'rspec-rails', '~> 3.6'
-  gem 'guard-rspec'
+  gem 'guard-rspec', require: false
 end
 
 group :development do

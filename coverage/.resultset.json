@@ -1041,13 +1041,13 @@
         1,
         null,
         1,
-        44,
-        44,
+        47,
+        47,
         null,
         null,
         null,
         1,
-        95,
+        101,
         null,
         null,
         1,
@@ -1055,7 +1055,7 @@
         null,
         null,
         1,
-        190,
+        202,
         null,
         null
       ],
@@ -1144,7 +1144,11 @@
         1,
         1,
         1,
-        33,
+        3,
+        3,
+        30,
+        30,
+        null,
         3,
         3,
         null,
@@ -1157,6 +1161,7 @@
         1,
         null,
         null,
+        1,
         1,
         1,
         1,
@@ -1358,6 +1363,16 @@
         null,
         null
       ],
+      "/Users/hiro/.ghq/github.com/elzup/AtColor/app/serializers/v1/user_serializer.rb": [
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        null
+      ],
       "/Users/hiro/.ghq/github.com/elzup/AtColor/app/controllers/v1/sessions_controller.rb": [
         1,
         1,
@@ -1407,16 +1422,6 @@
         null,
         null
       ],
-      "/Users/hiro/.ghq/github.com/elzup/AtColor/app/serializers/v1/user_serializer.rb": [
-        1,
-        1,
-        null,
-        1,
-        null,
-        1,
-        null,
-        null
-      ],
       "/Users/hiro/.ghq/github.com/elzup/AtColor/app/controllers/v1/users_controller.rb": [
         1,
         1,
@@ -1449,6 +1454,6 @@
         null
       ]
     },
-    "timestamp": 1510573165
+    "timestamp": 1510573459
   }
 }

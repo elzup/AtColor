@@ -59,6 +59,17 @@ RSpec.describe "Users", type: :request do
       put v1_users_path, params: {language: 'javascript'}, headers: @headers
       expect(User.last.language).to eql('javascript')
     end
+
+    it "Q3 solved" do
+      put v1_users_path, params: {language: 'javascript'}, headers: @headers
+      expect(@user.solvings.length).to be(1)
+      expect(@user.solved_questions[0].qid).to be(3)
+    end
+
+    it "Q3 no solved" do
+      put v1_users_path, params: {}, headers: @headers
+      expect(@user.solvings.length).to be(0)
+    end
   end
 
   describe "GET /users/:id" do

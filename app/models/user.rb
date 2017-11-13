@@ -5,15 +5,13 @@ class User < ApplicationRecord
   has_many :solves
   has_many :questions, :through => :solves
 
-  alias solvers users
-
   after_create :update_access_token!
 
   validates_uniqueness_of :username
   validates_presence_of :username
 
-  validates :username, presence: true
-  validates :password, presence: true
+  validates :username, presence: true, on: :create
+  validates :password, presence: true, on: :create
 
   validates_length_of :twitter, :minimum => 1, :maximum => 20, :allow_blank => true
   validates_length_of :language, :minimum => 1, :maximum => 20, :allow_blank => true

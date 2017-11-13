@@ -40,6 +40,7 @@ class ApplicationController < ActionController::Base
     user = User.where(id: user_id).first
 
     if user && Devise.secure_compare(user.access_token, auth_token)
+      @current_user = user
     else
       authenticate_error
     end

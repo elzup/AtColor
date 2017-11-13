@@ -30,7 +30,7 @@ RSpec.describe "Pixels", type: :request do
     end
   end
 
-  describe "GET /pixels" do
+  describe "PUT /pixels" do
     before do
       @pixel = Pixel.first
       @params = { x: @pixel.x, y: @pixel.x, color: 'red' }

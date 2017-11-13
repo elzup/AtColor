@@ -27,28 +27,27 @@ RSpec.describe "Users", type: :request do
   describe "PUT /users" do
     before do
       @user = User.create(username: "kyoko", password: "hoge1234")
+      @headers = {Authorization: @user.access_token}
     end
 
     it "200" do
-      put v1_edit_users_path, { id: @user.id, username: 'kyoko2' }
-      data = JSON.parse(response.body, {:symbolize_names => true})
-      expect(User.last.username).to be('kyoko2')
+      put v1_users_path, params: { twitter: 'hoge' }, headers: @headers
+      JSON.parse(response.body, {:symbolize_names => true})
     end
 
     it "user not found" do
-      expect(response).to have_http_status(200)
+      put v1_users_path, params: { twitter: 'hoge' }
+      expect(response).to have_http_status(401)
     end
 
-    it "works!" do
-      put v1_edit_users_path, { username: 'kyoko2' }
-      @data = JSON.parse(response.body, {:symbolize_names => true})
-      expect(User.last.username).to be('kyoko2')
+    it "works twitter" do
+      put v1_users_path, params: { twitter: 'hoge' }, headers: @headers
+      expect(User.last.twitter).to eql('hoge')
     end
 
-    it "works!" do
-      put v1_edit_users_path, { username: 'kyoko3', language: 'javascript' }
-      @data = JSON.parse(response.body, {:symbolize_names => true})
-      expect(User.last.username).to be('kyoko3')
+    it "works lang" do
+      put v1_users_path, params: { language: 'javascript' }, headers: @headers
+      expect(User.last.language).to eql('javascript')
     end
   end
 end

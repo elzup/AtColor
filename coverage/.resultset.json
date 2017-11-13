@@ -1020,8 +1020,6 @@
         null,
         null,
         1,
-        1,
-        1,
         null,
         1,
         null,
@@ -1034,19 +1032,13 @@
         1,
         1,
         null,
+        1,
+        1,
         1,
         null,
         1,
         43,
         43,
-        null,
-        null,
-        1,
-        0,
-        null,
-        null,
-        1,
-        0,
         null,
         null,
         null,
@@ -1088,7 +1080,7 @@
         1,
         null
       ],
-      "/Users/hiro/.ghq/github.com/elzup/AtColor/app/models/solve.rb": [
+      "/Users/hiro/.ghq/github.com/elzup/AtColor/app/models/solving.rb": [
         1,
         1,
         1,
@@ -1358,6 +1350,7 @@
         null,
         1,
         null,
+        1,
         null,
         null
       ],
@@ -1393,6 +1386,6 @@
         null
       ]
     },
-    "timestamp": 1510566315
+    "timestamp": 1510572300
   }
 }

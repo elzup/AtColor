@@ -27,7 +27,7 @@ RSpec.describe "Users", type: :request do
   describe "PUT /users" do
     before do
       @user = User.create(username: "kyoko", password: "hoge1234")
-      @headers = {Authorization: @user.access_token}
+      @headers = {Authentication: @user.access_token}
     end
 
     it "200" do

@@ -19,7 +19,21 @@ module V1
           message = solved.new_record? ? 'Congratuation! Q5 solved.' : 'OK already solved.'
           render json: {message: message}
         else
-          render json: {message: 'Please post me with header. (X-FUTABA: ANZU)'}
+          render json: {message: 'Please "GET" me with header. (X-FUTABA: ANZU)'}
+        end
+
+      elsif params[:id] == '6'
+        if request.headers['X-RIDER'] == 'SEIHUKUO'
+          solved = @current_user.solved(6)
+          message = solved.new_record? ? 'Congratuation! Q6 solved.' : 'OK already solved.'
+          render json: {message: message}
+        else
+          # TODO
+          response.headers['X-SABER'] = 'KISHIO'
+          response.headers['X-RIDER'] = 'SEIHUKUO'
+          response.headers['X-ASSASIN'] = 'ALTRI'
+          response.headers['X-ARCHER'] = 'ALTRI'
+          render json: {message: 'Please "GET" me with sending back same header. (X-RIDER: ???). look at my header.'}
         end
       end
     end

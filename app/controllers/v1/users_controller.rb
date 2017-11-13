@@ -6,7 +6,7 @@ module V1
     # Index users
     def index
       @users = User.all
-      render json: @users, each_serializer: V1::UserSerializer, root: nil
+      render json: @users, each_serializer: V1::UserSerializer
     end
 
     def update

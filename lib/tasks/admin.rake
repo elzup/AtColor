@@ -9,6 +9,9 @@ namespace :admin do
     end
 
     # questions
+    Question.create(title: 'http GET', description: '自分のプロフィールを取得する。', point: 5)
+    Question.create(title: 'http POST', description: 'ユーザを作成する。', point: 5)
+    Question.create(title: 'http PUT', description: '自分のプロフィールを更新する。', point: 5)
   end
 
 end

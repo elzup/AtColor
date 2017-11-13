@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
       return
     end
 
-    auth_token = request.headers['Authorization']
+    auth_token = request.headers['Authentication']
 
     if auth_token
       authenticate_with_auth_token auth_token
@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
     user = User.where(id: user_id).first
 
     if user && Devise.secure_compare(user.access_token, auth_token)
-      @current_user = user
+      @current_user = User.find(user.id)
     else
       authenticate_error
     end

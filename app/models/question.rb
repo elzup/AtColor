@@ -20,10 +20,10 @@ class Question < ApplicationRecord
     # Question.create(qid: 9, title: 'can you search?', description: 'GET /q/9', point: 19)
     # Question.create(qid: 10, title: 'can you resend?', description: 'POST /q/10', point: 23)
 
-    Question.create(qid: 101, title: 'are you searcher?', description: 'POST /q/101?flag=???', point: 0.1)
-    Question.create(qid: 102, title: 'are you espr?', description: 'POST /q/102?flag=???', point: 0.2)
-    Question.create(qid: 103, title: 'are you jsr?', description: 'POST /q/103?flag=???', point: 0.3)
-    Question.create(qid: 104, title: 'are you coder?', description: 'POST /q/104?flag=???', point: 0.4)
+    Question.create(qid: 101, title: 'are you searcher?', description: 'PUT /q/101?flag=???', point: 0.1)
+    Question.create(qid: 102, title: 'are you espr?', description: 'PUT /q/102?flag=???', point: 0.2)
+    Question.create(qid: 103, title: 'are you jsr?', description: 'PUT /q/103?flag=???', point: 0.3)
+    Question.create(qid: 104, title: 'are you coder?', description: 'PUT /q/104?flag=???', point: 0.4)
   end
 
 end

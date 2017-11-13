@@ -10,21 +10,49 @@ module V1
     end
 
     def update
+
+      secrets = Rails.application.secrets
       if params[:id] == '8'
         diff = params[:time].to_i - Time.now.to_i
         if diff == 0
           solved = @current_user.solved(8)
-          message = solved ? 'Congratuation! Q8 solved.' : 'OK already solved.'
+          message = solved ? 'Congratulation! Q8 solved.' : 'OK already solved.'
         else
           message = "Failed. diff: #{diff}"
         end
         render json: {message: message}
       elsif params[:id] == '101'
-        render json: {message: ''}
+        if secrets.a1 == params[:flag]
+          solved = @current_user.solved(101)
+          message = solved ? 'Congratulation! You are great searcher.' : 'OK already solved.'
+          render json: {message: message}
+        else
+          render json: {message: 'SEARCH ME: filename:.zshrc language:shell 208d8bcb197a5a66b69178be' + 'e992092c34959525 Udpate'}
+        end
       elsif params[:id] == '102'
+        if secrets.a2 == params[:flag]
+          solved = @current_user.solved(102)
+          message = solved ? 'Congratulation! You are great esper.' : 'OK already solved.'
+          render json: {message: message}
+        else
+          render json: {message: 'PATCH ME:'}
+        end
       elsif params[:id] == '103'
+        if secrets.a3 == params[:flag]
+          solved = @current_user.solved(103)
+          message = solved ? 'Congratulation! You are great jsr.' : 'OK already solved.'
+          render json: {message: message}
+        else
+          render json: {message: 'DEVELOP ME: atcolor.cps.im.dendai.ac.jp.'}
+        end
       elsif params[:id] == '104'
-
+        if secrets.a4 == params[:flag]
+          solved = @current_user.solved(104)
+          message = solved ? 'Congratulation! You are great coder.' : 'OK already solved.'
+          render json: {message: message}
+        else
+          render json: {message: 'READ ME: this code made by elzup@cpslab. OSS project.'}
+        end
       end
     end
 
@@ -32,7 +60,7 @@ module V1
       if params[:id] == '5'
         if request.headers['X-FUTABA'] == 'ANZU'
           solved = @current_user.solved(5)
-          message = solved ? 'Congratuation! Q5 solved.' : 'OK already solved.'
+          message = solved ? 'Congratulation! Q5 solved.' : 'OK already solved.'
           render json: {message: message}
         else
           render json: {message: 'Please "GET" me with header. (X-FUTABA: ANZU)'}
@@ -41,7 +69,7 @@ module V1
       elsif params[:id] == '6'
         if request.headers['X-RIDER'] == 'ISKANDAR'
           solved = @current_user.solved(6)
-          message = solved ? 'Congratuation! Q6 solved.' : 'OK already solved.'
+          message = solved ? 'Congratulation! Q6 solved.' : 'OK already solved.'
           render json: {message: message}
         else
           response.headers['X-SABER'] = 'ARTHUR'
@@ -56,7 +84,7 @@ module V1
       elsif params[:id] == '7'
         if params[:name] == '安部菜々'
           solved = @current_user.solved(7)
-          message = solved ? 'Congratuation! Q7 solved.' : 'OK already solved.'
+          message = solved ? 'Congratulation! Q7 solved.' : 'OK already solved.'
           render json: {message: message}
         else
           page = params[:page] || 1
@@ -83,7 +111,7 @@ module V1
     def destroy
       if params[:id] == '4'
         solved = @current_user.solved(4)
-        message = solved ? 'Congratuation! Q4 solved.' : 'OK already solved.'
+        message = solved ? 'Congratulation! Q4 solved.' : 'OK already solved.'
         render json: {message: message}
       end
     end

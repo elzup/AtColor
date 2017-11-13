@@ -10,6 +10,14 @@ namespace :admin do
 
     # questions
     Question.setup
+
+    # idols
+    Idol.setup
   end
+
+  task :init_idol => :environment do
+    Idol.setup
+  end
+
 
 end

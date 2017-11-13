@@ -1,13 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe "Questions", type: :request do
-  describe "GET /questions" do
+  before :each do
+    Question.setup
+    @u = User.create(username: 'start', password: 'hogefuga')
+    @headers = {Authentication: @u.access_token}
+  end
+
+  describe "GET /q" do
     before do
-      u = User.create(username: 'start', password: 'hogefuga')
-      10.times do |i|
-        q = Question.create(title: "hoge#{i}", description: "dddddd dddddd dddd #{i}")
-        q.solvings.create(user: u)
-      end
+      Question.first.solvings.create(user: @u)
       get v1_q_index_path
       @data = JSON.parse(response.body, {:symbolize_names => true})
     end
@@ -16,13 +18,8 @@ RSpec.describe "Questions", type: :request do
       expect(response).to have_http_status(200)
     end
 
-    it "got questions" do
-      expect(@data.length).to eq(10)
-    end
-
     it "params" do
       question = @data[0]
-      expect(question[:title]).to eq('hoge0')
       expect(question).to have_key(:title)
       expect(question).to have_key(:description)
       expect(question).to have_key(:solvers)
@@ -30,4 +27,11 @@ RSpec.describe "Questions", type: :request do
     end
   end
 
+  describe "DELETE /q/4" do
+    it "Q4 solved" do
+      delete "/q/4", {headers: @headers}
+      expect(@user.solvings.length).to be(1)
+      expect(@user.solved_questions[0].qid).to be(4)
+    end
+  end
 end

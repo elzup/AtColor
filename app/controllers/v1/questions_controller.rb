@@ -23,16 +23,19 @@ module V1
         end
 
       elsif params[:id] == '6'
-        if request.headers['X-RIDER'] == 'SEIHUKUO'
+        if request.headers['X-RIDER'] == 'ISKANDAR'
           solved = @current_user.solved(6)
           message = solved.new_record? ? 'Congratuation! Q6 solved.' : 'OK already solved.'
           render json: {message: message}
         else
           # TODO
-          response.headers['X-SABER'] = 'KISHIO'
-          response.headers['X-RIDER'] = 'SEIHUKUO'
-          response.headers['X-ASSASIN'] = 'ALTRI'
-          response.headers['X-ARCHER'] = 'ALTRI'
+          response.headers['X-SABER'] = 'ARTHUR'
+          response.headers['X-RIDER'] = 'ISKANDAR'
+          response.headers['X-ASSASSIN'] = 'HASSAN'
+          response.headers['X-ARCHER'] = 'GILGAMESH'
+          response.headers['X-LANCER'] = 'DIARMUID'
+          response.headers['X-BERSERKER'] = 'LANCELOT'
+          response.headers['X-CASTER'] = 'GILLES'
           render json: {message: 'Please "GET" me with sending back same header. (X-RIDER: ???). look at my header.'}
         end
       end

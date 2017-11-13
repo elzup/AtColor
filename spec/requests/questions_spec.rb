@@ -55,20 +55,20 @@ RSpec.describe "Questions", type: :request do
       get v1_q_path(6), {headers: @headers}
       @data = JSON.parse(response.body, {:symbolize_names => true})
       expect(response.headers).to have_key('X-RIDER')
-      expect(response.headers['X-RIDER']).to eql('SEIHUKUO')
+      expect(response.headers['X-RIDER']).to eql('ISKANDAR')
       expect(@data[:message]).to include('X-RIDER')
       expect(@data[:message]).to include('my header')
     end
 
     it "Q6 solved" do
-      get v1_q_path(6), {headers: {Authentication: @user.access_token, 'X-RIDER': 'SEIHUKUO'}}
+      get v1_q_path(6), {headers: {Authentication: @user.access_token, 'X-RIDER': 'ISKANDAR'}}
       expect(@user.solvings.length).to be(1)
       expect(@user.solved_questions[0].qid).to be(6)
     end
 
     it "Q6 failed" do
       get v1_q_path(6), {headers: {Authentication: @user.access_token, 'X-RIDER': 'GUNSO'}}
-      get v1_q_path(6), {headers: {Authentication: @user.access_token, 'X-ARCHER': 'SEIHUKUO'}}
+      get v1_q_path(6), {headers: {Authentication: @user.access_token, 'X-ARCHER': 'ISKANDAR'}}
       expect(@user.solvings.length).to be(0)
     end
   end

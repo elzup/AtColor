@@ -39,12 +39,12 @@ RSpec.describe "Questions", type: :request do
     it "Q5 question" do
       get v1_q_path(5), {headers: @headers}
       @data = JSON.parse(response.body, {:symbolize_names => true})
-      expect(@data.question).to include('X-FUTABA')
-      expect(@data.question).to include('ANZU')
+      expect(@data[:message]).to include('X-FUTABA')
+      expect(@data[:message]).to include('ANZU')
     end
 
     it "Q5 solved" do
-      post v1_q_path(5), {headers: {Authentication: @user.access_token, 'X-FUTABA': 'ANZU'}}
+      get v1_q_path(5), {headers: {Authentication: @user.access_token, 'X-FUTABA': 'ANZU'}}
       expect(@user.solvings.length).to be(1)
       expect(@user.solved_questions[0].qid).to be(5)
     end

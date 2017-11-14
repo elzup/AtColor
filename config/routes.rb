@@ -17,7 +17,5 @@ Rails.application.routes.draw do
     put :pixels, to: 'pixels#update'
 
     resources :q, controller: :questions, as: :q
-
-    resources :debugs
   end
 end

@@ -96,6 +96,13 @@
         null,
         null,
         null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/hiro/.ghq/github.com/elzup/AtColor/config/boot.rb": [
@@ -1094,6 +1101,7 @@
         null,
         1,
         15,
+        null,
         15,
         15,
         3000,
@@ -1800,6 +1808,6 @@
         null
       ]
     },
-    "timestamp": 1510614550
+    "timestamp": 1510638884
   }
 }

@@ -103,7 +103,7 @@ module V1
       elsif params[:id] == '8'
         render json: {
             idols: @res,
-            message: 'Please "POST" me with current unix timestamp. You can use field ["time"]. not "GET" use "POST"'
+            message: 'Please "PUT" me with current unix timestamp. You can use field ["time"]. not ["GET", "POST"] use "PUT" fixed 2017-11-14'
         }
       end
     end

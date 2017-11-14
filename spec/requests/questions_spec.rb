@@ -26,6 +26,19 @@ RSpec.describe "Questions", type: :request do
       expect(question).to have_key(:solvers)
       expect(question[:solvers].length).to be(1)
     end
+
+    it "solver is ordered faster" do
+      u1 = User.create(username: 'a', password: 'hogefuga')
+      u2 = User.create(username: 'b', password: 'hogefuga')
+      u3 = User.create(username: 'c', password: 'hogefuga')
+
+      u1.solved(5)
+      u3.solved(5)
+      u2.solved(5)
+
+      expect([u1.id, u3.id, u2.id]).to match_array(Question.find_by_qid(5).solvers.map(&:id))
+
+    end
   end
 
   describe "DELETE /q/4" do

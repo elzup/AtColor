@@ -30,6 +30,14 @@ module V1
           render json: {message: 'SEARCH ME: filename:.zshrc language:shell 208d8bcb197a5a66b69178be' + 'e992092c34959525 Udpate'}
         end
       elsif params[:id] == '102'
+        if request.method == 'PATCH'
+          dummy = Dummy.new dummy_params
+          if dummy.save
+            return render json: {message: 'FLAG_N_ZUP'}
+          else
+            return render json: {error: dummy.errors}, status: :unprocessable_entity
+          end
+        end
         if secrets.a2 == params[:flag]
           solved = @current_user.solved(102)
           message = solved ? 'Congratulation! You are great esper.' : 'OK already solved.'
@@ -115,5 +123,11 @@ module V1
         render json: {message: message}
       end
     end
+
+    private
+    def dummy_params
+      params.permit(:a, :b, :c, :d, :e)
+    end
   end
+
 end

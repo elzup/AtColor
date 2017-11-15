@@ -130,11 +130,37 @@ RSpec.describe "Questions", type: :request do
     end
   end
 
-  describe "GET /q/104" do
+  describe "PUT /q/104" do
     it "all OK" do
+      # find me
       put v1_q_path(104), { params: { flag: 'FLAG_A_TC_OLO_R' }, headers: @headers }
       expect(@user.solvings.length).to be(1)
       expect(@user.solved_questions[0].qid).to be(104)
+    end
+  end
+
+  describe "PUT /q/10X" do
+    it '101 works' do
+      put v1_q_path(101), { headers: @headers }
+      message_gettable('SEARCH ME')
+    end
+    it '102 works' do
+      put v1_q_path(102), { headers: @headers }
+      message_gettable('PATCH ME')
+    end
+    it '103 works' do
+      put v1_q_path(103), { headers: @headers }
+      message_gettable('DEVELOP ME')
+    end
+    it '104 works' do
+      put v1_q_path(104), { headers: @headers }
+      message_gettable('READ ME')
+    end
+
+    def message_gettable(text)
+      expect(response).to have_http_status(200)
+      data = JSON.parse(response.body, {:symbolize_names => true})
+      expect(data[:message]).to include(text)
     end
   end
 end

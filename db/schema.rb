@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113171044) do
+ActiveRecord::Schema.define(version: 20171115031846) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -46,6 +46,16 @@ ActiveRecord::Schema.define(version: 20171113171044) do
   create_table "color_gachas", force: :cascade do |t|
     t.string "rank"
     t.string "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "dummies", force: :cascade do |t|
+    t.string "a"
+    t.integer "b"
+    t.float "c"
+    t.boolean "d"
+    t.string "e"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

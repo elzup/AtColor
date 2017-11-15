@@ -142,25 +142,25 @@ RSpec.describe "Questions", type: :request do
   describe "PUT /q/10X" do
     it '101 works' do
       put v1_q_path(101), { headers: @headers }
-      message_gettable('SEARCH ME')
+      @text = 'SEARCH ME'
     end
     it '102 works' do
       put v1_q_path(102), { headers: @headers }
-      message_gettable('PATCH ME')
+      @text = 'PATCH ME'
     end
     it '103 works' do
       put v1_q_path(103), { headers: @headers }
-      message_gettable('DEVELOP ME')
+      @text = 'DEVELOP ME'
     end
     it '104 works' do
       put v1_q_path(104), { headers: @headers }
-      message_gettable('READ ME')
+      @text = 'READ ME'
     end
 
-    def message_gettable(text)
+    after :each do
       expect(response).to have_http_status(200)
       data = JSON.parse(response.body, {:symbolize_names => true})
-      expect(data[:message]).to include(text)
+      expect(data[:message]).to include(@text)
     end
   end
 end

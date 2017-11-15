@@ -305,6 +305,34 @@
         null,
         null
       ],
+      "/Users/hiro/.ghq/github.com/elzup/AtColor/app/models/dummy.rb": [
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null
+      ],
       "/Users/hiro/.ghq/github.com/elzup/AtColor/app/controllers/v1/pixels_controller.rb": [
         1,
         1,
@@ -395,6 +423,14 @@
         0,
         0,
         null,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
         1,
         null,
         4,
@@ -473,6 +509,12 @@
         1,
         1,
         1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        0,
         null,
         null,
         null,
@@ -595,6 +637,6 @@
         null
       ]
     },
-    "timestamp": 1510714774
+    "timestamp": 1510719046
   }
 }

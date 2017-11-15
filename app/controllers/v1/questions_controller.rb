@@ -32,7 +32,7 @@ module V1
       elsif params[:id] == '102'
         if request.method == 'PATCH'
           dummy = Dummy.new dummy_params
-          if dummy.save
+          if dummy.valid?
             return render json: {message: 'FLAG_N_ZUP'}
           else
             return render json: {error: dummy.errors}, status: :unprocessable_entity

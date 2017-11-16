@@ -27,13 +27,13 @@ module V1
           message = solved ? 'Congratulation! You are great searcher.' : 'OK already solved.'
           render json: {message: message}
         else
-          render json: {message: 'SEARCH ME: filename:.zshrc language:shell 208d8bcb197a5a66b69178be' + 'e992092c34959525 Udpate'}
+          render json: {message: 'SEARCH ME: filename:.zshrc language:shell 208d8bcb197a5a66b69178be' + 'e992092c34959525. Flag in the internet'}
         end
       elsif params[:id] == '102'
         if request.method == 'PATCH'
           dummy = Dummy.new dummy_params
           if dummy.valid?
-            return render json: {message: 'FLAG_N_ZUP'}
+            return render json: {message: secrets.a2}
           else
             return render json: {error: dummy.errors}, status: :unprocessable_entity
           end
@@ -51,7 +51,7 @@ module V1
           message = solved ? 'Congratulation! You are great jsr.' : 'OK already solved.'
           render json: {message: message}
         else
-          render json: {message: 'DEVELOP ME: atcolor.cps.im.dendai.ac.jp.'}
+          render json: {message: 'DEVELOP ME: atcolor.cps.im.dendai.ac.jp. Redux devtools'}
         end
       elsif params[:id] == '104'
         if secrets.a4 == params[:flag]

@@ -5,7 +5,7 @@ module V1
     # GET
     # Index questions
     def index
-      @qs = Question.all
+      @qs = Question.all.order(:qid)
       render json: @qs, each_serializer: V1::QuestionSerializer
     end
 

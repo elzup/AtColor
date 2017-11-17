@@ -5,7 +5,7 @@ class Question < ApplicationRecord
 
   @@qcount = 13
 
-  def qcount
+  def self.qcount
     @@qcount
   end
 

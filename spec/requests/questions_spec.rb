@@ -27,6 +27,12 @@ RSpec.describe "Questions", type: :request do
       expect(question[:solvers].length).to be(1)
     end
 
+    it "ordered by qid" do
+      ans = Question.all.map(&:qid).sort
+      qids = @data.map {|v| v[:qid]}
+      expect(qids).to match(ans)
+    end
+
     it "solver is ordered faster" do
       u1 = User.create(username: 'a', password: 'hogefuga')
       u2 = User.create(username: 'b', password: 'hogefuga')

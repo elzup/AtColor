@@ -23,6 +23,7 @@ RSpec.describe "Users", type: :request do
       expect(user[:username]).to eq('hoge0')
       expect(user).to have_key(:solved_questions)
       expect(user).to have_key(:total_point)
+      expect(user).to have_key(:last_solved_at)
       expect(user).not_to have_key(:password)
       expect(user).not_to have_key(:access_token)
     end

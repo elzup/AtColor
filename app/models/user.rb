@@ -18,6 +18,13 @@ class User < ApplicationRecord
   has_many :questions, :through => :solvings
   alias solved_questions questions
 
+  def last_solved_at
+    if solvings.count == 0
+      return created_at
+    end
+    solvings.last.created_at
+  end
+
   def total_point
     solved_questions.sum(:point)
   end

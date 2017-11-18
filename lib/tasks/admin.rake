@@ -1,5 +1,7 @@
 namespace :admin do
   task :init => :environment do
+    p 'locked by source'
+    return
     AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
     Solving.delete_all
     User.delete_all
@@ -21,5 +23,8 @@ namespace :admin do
     Idol.setup
   end
 
+  task :init_question => :environment do
+    Question.setup
+  end
 
 end

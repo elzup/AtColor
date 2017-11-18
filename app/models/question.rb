@@ -30,7 +30,7 @@ class Question < ApplicationRecord
     Question.find_or_create_by(qid: 103, title: 'are you jsr?', description: 'PUT /q/103?flag=???', point: 1)
     Question.find_or_create_by(qid: 104, title: 'are you coder?', description: 'PUT /q/104?flag=???', point: 1)
 
-    Question.find_or_create_by(qid: 9, title: 'can you image?', description: 'GET /q/9', point: 19)
+    Question.find_or_create_by(qid: 9, title: 'can you post image?', description: 'GET /q/9', point: 19)
   end
 
 end

@@ -15,7 +15,7 @@ class Dummy < ApplicationRecord
             }
   validates :c,
             presence: true,
-            inclusion: {in: [3.14159215], message: "pi"},
+            inclusion: {in: Math::PI.to_s.slice(0, 10), message: "pi"},
             length: {is: 10}
   validates :d,
             inclusion: {in: [false]},

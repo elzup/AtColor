@@ -19,7 +19,10 @@ class ApplicationController < ActionController::Base
       return
     end
 
-    # request.headers['Authentication']
+    unless request.headers['Authentication'].nil?
+      return render json: {error: '"Authentication" header key fixed to "Authorization". Use "Authorization: {token}".'}, status: 400
+    end
+
     auth_token = request.headers['Authorization']
 
     if auth_token

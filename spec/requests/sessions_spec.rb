@@ -78,6 +78,12 @@ RSpec.describe "Sessions", type: :request do
       expect(@user.solvings.length).to be(1)
       expect(@user.solved_questions[0].qid).to be(1)
     end
+
+    it "Authentication key annotate" do
+      get v1_is_auth_path, headers: {Authentication: @user.access_token}
+      data = JSON.parse(response.body, {:symbolize_names => true})
+      expect(data[:error]).to include('"Authentication" header key fixed to "Authorization". Use "Authorization: {token}".')
+    end
   end
 
   describe "GET /sessions" do

@@ -34,7 +34,7 @@ RSpec.describe "Users", type: :request do
     before do
       Question.setup
       @user = User.create(username: "kyoko", password: "hoge1234")
-      @headers = {Authentication: @user.access_token}
+      @headers = {Authorization: @user.access_token}
     end
 
     it "200" do

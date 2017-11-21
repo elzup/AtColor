@@ -58,7 +58,7 @@ RSpec.describe "Sessions", type: :request do
     before do
       Question.setup
       @user = User.create(username: 'start', password: 'password')
-      @headers = {Authentication: @user.access_token}
+      @headers = {Authorization: @user.access_token}
     end
 
     it "works!" do
@@ -69,7 +69,7 @@ RSpec.describe "Sessions", type: :request do
     end
 
     it "no loging" do
-      get v1_is_auth_path, headers: {Authentication: "hoge"}
+      get v1_is_auth_path, headers: {Authorization: "hoge"}
       expect(response).to have_http_status(401)
     end
 

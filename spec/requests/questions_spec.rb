@@ -5,7 +5,7 @@ RSpec.describe "Questions", type: :request do
     Question.setup
     Idol.setup
     @user = User.create(username: 'start', password: 'hogefuga')
-    @headers = {Authentication: @user.access_token}
+    @headers = {Authorization: @user.access_token}
   end
 
   describe "GET /q" do
@@ -64,7 +64,7 @@ RSpec.describe "Questions", type: :request do
     end
 
     it "Q5 solved" do
-      get v1_q_path(5), {headers: {Authentication: @user.access_token, 'X-FUTABA': 'ANZU'}}
+      get v1_q_path(5), {headers: {Authorization: @user.access_token, 'X-FUTABA': 'ANZU'}}
       expect(@user.solvings.length).to be(1)
       expect(@user.solved_questions[0].qid).to be(5)
     end
@@ -81,14 +81,14 @@ RSpec.describe "Questions", type: :request do
     end
 
     it "Q6 solved" do
-      get v1_q_path(6), {headers: {Authentication: @user.access_token, 'X-RIDER': 'ISKANDAR'}}
+      get v1_q_path(6), {headers: {Authorization: @user.access_token, 'X-RIDER': 'ISKANDAR'}}
       expect(@user.solvings.length).to be(1)
       expect(@user.solved_questions[0].qid).to be(6)
     end
 
     it "Q6 failed" do
-      get v1_q_path(6), {headers: {Authentication: @user.access_token, 'X-RIDER': 'GUNSO'}}
-      get v1_q_path(6), {headers: {Authentication: @user.access_token, 'X-ARCHER': 'ISKANDAR'}}
+      get v1_q_path(6), {headers: {Authorization: @user.access_token, 'X-RIDER': 'GUNSO'}}
+      get v1_q_path(6), {headers: {Authorization: @user.access_token, 'X-ARCHER': 'ISKANDAR'}}
       expect(@user.solvings.length).to be(0)
     end
   end

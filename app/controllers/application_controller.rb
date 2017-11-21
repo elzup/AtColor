@@ -19,7 +19,8 @@ class ApplicationController < ActionController::Base
       return
     end
 
-    auth_token = request.headers['Authentication']
+    # request.headers['Authentication']
+    auth_token = request.headers['Authorization']
 
     if auth_token
       authenticate_with_auth_token auth_token
